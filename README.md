@@ -1,2 +1,6 @@
 # makeshift-bitlife
-as my first project I will make a Bitlife-type game to expand my knowledge in coding.
+a bitlife-type project i had an idea of making.
+
+#### Releases
+- v000
+https://web-platform-kbay4x.stackblitz.io/
