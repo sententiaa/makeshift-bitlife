@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Home</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <!--
+      Need a visual blank slate?
+      Remove all code in `styles.css`!
+    -->
+    <link rel="stylesheet" href="styles.css" />
+    <script type="module" src="script.js"></script>
+  </head>
+  <body>
+    <main>
+      <nav class="containerarea">
+      <button class="agebutton" onclick="_Age()">Age Up</button>
+      </nav>
+      <nav class=buttoncontainer>
+        <button class="lowerbutton"></button>
+        <button class="downbutton"></button>
+        <button class="leftbutton">School</button>
+        <button class="rightbutton">Assets</button>
+        <button class="leftmostbutton">More</button>
+        <button class="rightmostbutton">Self</button>
+      </nav>
+      <nav class="selfbars">
+        <p id="CharacterName">Name</p>
+        <p id="CharacterAge">0</p>
+        <hr class="verticledivider">
+        <span class="dot">
+          <p id="hobbyicon">🖌️</p>
+        </span>
+      </nav>
+    </main>
+    <script>
+    var FirstName = ""
+    var LastName = ""
+    var Gender = ""
+    var Age = 0
+    var Hobby = ""
+    var Health = 100
+    var MaxHealth = 100
+    var Mood = 100
+    var Happiness = 100
+    var WalletMoney = 0
+    const Character = [FirstName, LastName, Age, Gender, Hobby]
+    Character.Age = 0
+    
+    function CreateCharacter() {
+      const date = new Date()
+      const yearnum = date.getFullYear()
+      const monthnum = date.getMonth()
+      const daynum = date.getDay()
+      var month = date.toLocaleString('default', { month: 'long' });
+      function daysuffix(dt)
+      {
+        return dt.getDate()+(dt.getDate() % 10 == 1 && dt.getDate() != 11 ? 'st' : (dt.getDate() % 10 == 2 && dt.getDate() != 12 ? 'nd' : (dt.getDate() % 10 == 3 && dt.getDate() != 13 ? 'rd' : 'th'))); 
+      }
+    
+      // Random Selector Arrays
+    
+      const _MaleFirstNames = ["Noah", "Oliver", "Elijah", "James", "Liam", "William", "Benjamin", "Lucas", "Henry", "Theodore"]
+    
+      const _FemaleFirstNames = ["Emma", "Charlotte", "Amelia", "Ava", "Olivia", "Sophia", "Isabella", "Mia", "Evelyn", "Harper"]
+    
+      const _LastNames = ["Smith", "Johnson", "Brown", "Jones", "Garcia", "Miller", "Davis", "Moore", "White", "Thomas"]
+    
+      const _Genders = ["Male", "Female"]
+    
+      const _Hobbies = ["Sports", "Art", "Programming", "Music", "Cooking", "Handicraft", "Gaming"]
+    
+      var randomgender = Math.floor(Math.random()*_Genders.length)
+      Character.Gender = _Genders[randomgender]
+      if (Character.Gender == "Male") {
+        var randomname = Math.floor(Math.random()
+        *_MaleFirstNames.length)
+        Character.FirstName = _MaleFirstNames[randomname]
+      } else if (Character.Gender == "Female") {
+        var randomname = Math.floor(Math.random()*_FemaleFirstNames.length)
+        Character.FirstName = _FemaleFirstNames[randomname]
+      }
+      var randomlast = Math.floor(Math.random()*_LastNames.length)
+      Character.LastName = _LastNames[randomlast]
+      var randomhobby = Math.floor(Math.random()*_Hobbies.length)
+      Character.Hobby = _Hobbies[randomhobby]
+    
+      console.log("A "+ Character.Gender + " named, " + Character.FirstName + " " + Character.LastName + ", is born with being a hobbyist of " + Character.Hobby + " was born on, " + yearnum + ",  " + month + " " + daysuffix(date))
+
+      if (Character.Age == 0) {
+        document.getElementById("CharacterAge").innerHTML = "Just Born";
+      } else {
+        document.getElementById("CharacterAge").innerHTML = Character.Age;
+      }
+
+      switch (Character.Hobby) {
+        case "Sports":
+          document.getElementById("hobbyicon").innerHTML = "⛹️‍♂️"; 
+          break
+        case "Art":
+          document.getElementById("hobbyicon").innerHTML = "🎨";
+          break
+        case "Programming":
+          document.getElementById("hobbyicon").innerHTML = "👨‍💻";
+          break
+        case "Music":
+          document.getElementById("hobbyicon").innerHTML = "🎵";
+          break
+        case "Cooking":
+          document.getElementById("hobbyicon").innerHTML = "🍳";
+          break
+        case "Handicraft":
+          document.getElementById("hobbyicon").innerHTML = "🔨";
+          break
+        case "Gaming":
+          document.getElementById("hobbyicon").innerHTML = "🎮";
+          break
+        default:
+          document.getElementById("hobbyicon").innerHTML = "⚫";
+      }
+
+      document.getElementById("CharacterName").innerHTML = Character.FirstName + " " + Character.LastName;
+
+
+      }
+
+      CreateCharacter()
+    
+      // Changing HTML Elements
+      if (Character.Age == 0) {
+        document.getElementById("CharacterAge").innerHTML = "Just Born";
+      } else {
+        document.getElementById("CharacterAge").innerHTML = Character.Age;
+      }
+
+      // Aging Mechanics
+    
+    
+      function _Age() {
+        var eventrarity = Math.random()*100
+        console.log(eventrarity)
+        var commonevents = ["MoneyGain", "Stole"]
+        var rareevents = ["", ""]
+        var unordinaryevents = ["Die", "Live"]
+        function playevent() {
+          Character.Age = Character.Age + 1
+          if (Character.Age == 0) {
+            document.getElementById("CharacterAge").innerHTML = "Just Born";
+          } else {
+            document.getElementById("CharacterAge").innerHTML = Character.Age;
+          }
+          var randomeventrarity = Math.floor(Math.random()*eventrarity.length)
+          if (eventrarity <= 75) {
+            console.log("common event")
+            var randomcommonevent = Math.floor(Math.random()*commonevents.length)
+            var event = commonevents[randomcommonevent]
+            if (event == "MoneyGain") {
+              WalletMoney = WalletMoney + 3
+              console.log(WalletMoney)
+            } else if (event == "Stole") {
+              WalletMoney = WalletMoney - 5
+              console.log(WalletMoney)
+              if (WalletMoney < 0) {
+                console.log(Character.Age)
+                if (Character.Age < 16) {
+                  console.log("Your parents agreed to pay for the stolen items")
+                } else {
+                }
+              }
+            }
+          } else if (eventrarity > 75 && eventrarity <= 90) {
+            console.log("rare event")
+          } else if (eventrarity > 90 && eventrarity <= 100) {
+            console.log("unordinary event")
+            var randomunordinaryevent = Math.floor(Math.random()*unordinaryevents.length)
+            var event = unordinaryevents[randomunordinaryevent]
+            if (event == "Die") {
+              console.log("ded brah u died bro")
+            }
+          }
+        }
+        playevent()
+      }
+    </script>
+  </body>
+</html>
