@@ -27,6 +27,7 @@
       <nav class="selfbars">
         <p id="CharacterName">Name</p>
         <p id="CharacterAge">0</p>
+        <p id="Money">$100000000</p>
         <hr class="verticledivider">
         <span class="dot">
           <p id="hobbyicon">🖌️</p>
@@ -43,7 +44,7 @@
     var MaxHealth = 100
     var Mood = 100
     var Happiness = 100
-    var WalletMoney = 0
+    var WalletMoney = 1000000000000000
     const Character = [FirstName, LastName, Age, Gender, Hobby]
     Character.Age = 0
     
@@ -120,12 +121,25 @@
       }
 
       document.getElementById("CharacterName").innerHTML = Character.FirstName + " " + Character.LastName;
-
-
       }
+
 
       CreateCharacter()
     
+      if (WalletMoney <= 100000000000000) {
+        var numbershortener = (new Intl.NumberFormat( 'en-US', { maximumFractionDigits: 1,notation: "compact" , compactDisplay: "short" }).format(WalletMoney));
+
+        var _converter090 = "$" + numbershortener
+        WalletMoney = _converter090
+      } else {
+        WalletMoney = "inf"
+      }
+
+    
+      document.getElementById("Money").innerHTML = WalletMoney;
+
+
+
       // Changing HTML Elements
       if (Character.Age == 0) {
         document.getElementById("CharacterAge").innerHTML = "Just Born";
