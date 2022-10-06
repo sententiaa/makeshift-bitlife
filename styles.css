@@ -73,6 +73,14 @@ h1 {
   box-shadow: 0px -15px 10px -10px rgb(120, 120, 120);
 }
 
+#eventdesc {
+  position: absolute;
+  margin-top: -450px;
+  font-size: 15px;
+  overflow-wrap: break-word;
+  inline-size: 500px;
+}
+
 .buttoncontainer {
   display: absolute;
   justify-content: center;
@@ -210,9 +218,10 @@ h1 {
 
 #Money {
   position: absolute;
-  margin-left: 275px;
+  margin-left: 325px;
   margin-top: -40px;
   font-size: 20px;
+  justify-content: left;
 }
 
 .verticledivider {

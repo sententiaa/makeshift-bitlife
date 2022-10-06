@@ -15,6 +15,7 @@
     <main>
       <nav class="containerarea">
       <button class="agebutton" onclick="_Age()">Age Up</button>
+      <p id="eventdesc">Nothing has happened yet.</p>
       </nav>
       <nav class=buttoncontainer>
         <button class="lowerbutton"></button>
@@ -44,7 +45,7 @@
     var MaxHealth = 100
     var Mood = 100
     var Happiness = 100
-    var WalletMoney = 1000000000000000
+    var WalletMoney = 0
     const Character = [FirstName, LastName, Age, Gender, Hobby]
     Character.Age = 0
     
@@ -61,11 +62,11 @@
     
       // Random Selector Arrays
     
-      const _MaleFirstNames = ["Noah", "Oliver", "Elijah", "James", "Liam", "William", "Benjamin", "Lucas", "Henry", "Theodore"]
+      const _MaleFirstNames = ["Noah", "Oliver", "Elijah", "James", "Liam", "William", "Benjamin", "Lucas", "Henry", "Theodore", "Keith", "James", "John", "Kyle", "Logan", "Mason", "Levi", "Grant", "Lewis", "Jake", "Owen", "Ethan", "Aiden", "David", "Luke", "Issac", "Adam", "Travis"]
     
-      const _FemaleFirstNames = ["Emma", "Charlotte", "Amelia", "Ava", "Olivia", "Sophia", "Isabella", "Mia", "Evelyn", "Harper"]
+      const _FemaleFirstNames = ["Emma", "Charlotte", "Amelia", "Ava", "Olivia", "Sophia", "Isabella", "Mia", "Evelyn", "Harper", "Alexis", "Chloe", "Madison", "Lily", "Hannah", "Alice", "Hailey", "Alyssa", "Nina"]
     
-      const _LastNames = ["Smith", "Johnson", "Brown", "Jones", "Garcia", "Miller", "Davis", "Moore", "White", "Thomas"]
+      const _LastNames = ["Smith", "Johnson", "Brown", "Jones", "Garcia", "Miller", "Davis", "Moore", "White", "Thomas", "Martin", "Lee", "Allen", "Young", "Scott", "Hill", "Flores", "Green", "Adams", "Baker", "Nelson", "Hall", "Carter", "Wright", "Roberts", "Phillips", "Murphy", "Collins", "Reed", "Howard", "Wood", "Gray", "Sanders", "Myers", "Long", "Short", "Ross", "Foster", "Powell", "Bell", "Romero", "Jordan", "Graham", "Wallace", "Reynolds", "Cole", "Hayes", "Bryant", "Ford", "Woods", "Washington", "Kennedy", "Wells", "Webb", "Burns", "Hunter", "Gordon", "Robertson", "Rose", "Stone", "Fox", "Mills"]
     
       const _Genders = ["Male", "Female"]
     
@@ -126,16 +127,14 @@
 
       CreateCharacter()
     
-      if (WalletMoney <= 100000000000000) {
+        if (WalletMoney <= 100000000000000) {
         var numbershortener = (new Intl.NumberFormat( 'en-US', { maximumFractionDigits: 1,notation: "compact" , compactDisplay: "short" }).format(WalletMoney));
 
         var _converter090 = "$" + numbershortener
         WalletMoney = _converter090
-      } else {
-        WalletMoney = "inf"
-      }
-
-    
+        } else {
+          WalletMoney = "inf"
+        }
       document.getElementById("Money").innerHTML = WalletMoney;
 
 
@@ -151,6 +150,8 @@
     
     
       function _Age() {
+        const _availableplaces = [" leaving the parking lot from a store.", " on your kitchen floor.", " in your basement, I wonder what they were doing down in here.", " in one of those ponds you found coins into, and you decided to take some."]
+        var randomavailableplaces = Math.floor(Math.random()*_availableplaces.length)
         var eventrarity = Math.random()*100
         console.log(eventrarity)
         var commonevents = ["MoneyGain", "Stole"]
@@ -170,7 +171,7 @@
             var event = commonevents[randomcommonevent]
             if (event == "MoneyGain") {
               WalletMoney = WalletMoney + 3
-              console.log(WalletMoney)
+              document.getElementById("eventdesc").innerHTML = "Age " + Character.Age + ": " + "You found a few pennies" + _availableplaces[randomavailableplaces]
             } else if (event == "Stole") {
               WalletMoney = WalletMoney - 5
               console.log(WalletMoney)
