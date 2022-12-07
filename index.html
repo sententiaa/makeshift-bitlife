@@ -34,6 +34,7 @@
           <p id="hobbyicon">🖌️</p>
         </span>
       </nav>
+      <button class="resetlifebutton" onclick="CreateCharacter()">↺</button>
     </main>
     <script>
     var FirstName = ""
@@ -50,6 +51,8 @@
     Character.Age = 0
     
     function CreateCharacter() {
+      Character.Age = 0
+      document.getElementById("eventdesc").innerHTML = ""
       const date = new Date()
       const yearnum = date.getFullYear()
       const monthnum = date.getMonth()
@@ -150,6 +153,7 @@
     
     
       function _Age() {
+        document.getElementById("eventdesc").style.color = "gray"
         const _availableplaces = [" leaving the parking lot from a store.", " on your kitchen floor.", " in your basement, I wonder what they were doing down in here.", " in one of those ponds you found coins into, and you decided to take some."]
         var randomavailableplaces = Math.floor(Math.random()*_availableplaces.length)
         var eventrarity = Math.random()*100
@@ -172,6 +176,7 @@
             if (event == "MoneyGain") {
               WalletMoney = WalletMoney + 3
               document.getElementById("eventdesc").innerHTML = "Age " + Character.Age + ": " + "You found a few pennies" + _availableplaces[randomavailableplaces]
+              document.getElementById("eventdesc").style.color = "black"
             } else if (event == "Stole") {
               WalletMoney = WalletMoney - 5
               console.log(WalletMoney)
